@@ -1,1 +1,1 @@
-This simple java project will utilize the Hash Tables & Linked Lists Data Structures to save and retrieve employee data.
+This simple java project will utilize the Hash Tables & Linked Lists Data Structures to save and retrieve employee data. The tutorial I watched to learn how to work with files is "Unpossible POG" on YouTube.
