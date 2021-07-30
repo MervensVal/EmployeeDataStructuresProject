@@ -18,7 +18,9 @@ public class Main {
 		System.out.println("(1)	Display All Employee Information");
 		System.out.println("(2)	Insert a New Employee");
 		System.out.println("(3)	Update Employee Information");
-		System.out.println("(4)	View Employee Information by ID (Hash Table & Linked List Implementation)");
+		System.out.println("(4)	View Employee Information by ID (Linear/ Basic File Search Implementation)");
+		System.out.println("(5)	View Employee Information by Last Name (Linear/ Basic File Search Implementation)");
+		System.out.println("(6)	View Employee Information by ID (Hash Table & Linked List Implementation)");
 		System.out.println("********************************************");
 
 		chooseUserChoices();
@@ -52,6 +54,13 @@ public class Main {
 		case "4":
 			mainObj.findEmployeeLinearSearchID();
 			System.out.println("Selected employee information displayed");
+			break;
+		case "5":
+			mainObj.findEmployeeLinearSearchLastN();
+			System.out.println("Selected employee information displayed");
+			break;
+		case "6":
+			System.out.println("Feature not yet implemented");
 			break;
 		default:
 			System.out.println("Incorrect information entered");
@@ -266,6 +275,39 @@ public class Main {
 			
 		}
 	}
+	
+	//-------------------------------------------------------------------------------------
+		/*This method will be used to find a specific Employee based on id*/
+		public void findEmployeeLinearSearchLastN() 
+		{
+			Scanner input = new Scanner(System.in);
+			System.out.println("Enter the Employee Last Name: "); 
+			String LastNToSearch = input.nextLine();
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
+				String s = "";
+				while((s = br.readLine()) != null) 
+				{
+					String data[] = new String[6]; // create array with capacity of 6 string items to hold entire line of code
+					data = s.split(","); // split text based on comma
+					if(LastNToSearch.equals(data[2])) {
+						System.out.println("ID: " + data[0]);
+						System.out.println("First Name: "+ data[1]);
+						System.out.println("Last Name: " + data[2]);
+						System.out.println("Last Name: "+ data[3]);
+						System.out.println("Email Address: "+ data[4]);
+						System.out.println("Position: "+ data[5]);
+						System.out.println("Location: "+ data[6]);
+						System.out.println("Current Employee: "+ data[7]);
+					}
+				}
+			}
+			catch(Exception e) 
+			{
+				
+			}
+		}
+		
 	
 }
 
