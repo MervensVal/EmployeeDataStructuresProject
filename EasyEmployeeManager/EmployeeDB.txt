@@ -1,2 +1,2 @@
-1,John,Smith,j@email.com,Marketing Specialist,Lincoln Nebraska,N,
-2,Mary,Johnson,mj@email.com,Mechanical Engineer II,Orlando Florida,Y,
+1,a,a,a,a,a,a
+2,x,x,x,x,b,b,
