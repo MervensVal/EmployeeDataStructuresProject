@@ -256,17 +256,16 @@ public class Main {
 			String s = "";
 			while((s = br.readLine()) != null) 
 			{
-				String data[] = new String[6]; // create array with capacity of 6 string items to hold entire line of code
+				String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of code
 				data = s.split(","); // split text based on comma
 				if(idToSearch == Integer.parseInt(data[0])) {
 					System.out.println("ID: " + data[0]);
 					System.out.println("First Name: "+ data[1]);
 					System.out.println("Last Name: " + data[2]);
-					System.out.println("Last Name: "+ data[3]);
-					System.out.println("Email Address: "+ data[4]);
-					System.out.println("Position: "+ data[5]);
-					System.out.println("Location: "+ data[6]);
-					System.out.println("Current Employee: "+ data[7]);
+					System.out.println("Email Address: "+ data[3]);
+					System.out.println("Position: "+ data[4]);
+					System.out.println("Location: "+ data[5]);
+					System.out.println("Current Employee: "+ data[6]);
 				}
 			}
 		}
@@ -288,17 +287,17 @@ public class Main {
 				String s = "";
 				while((s = br.readLine()) != null) 
 				{
-					String data[] = new String[6]; // create array with capacity of 6 string items to hold entire line of code
+					String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of code
 					data = s.split(","); // split text based on comma
 					if(LastNToSearch.equals(data[2])) {
+						System.out.println("-----------------------------");
 						System.out.println("ID: " + data[0]);
 						System.out.println("First Name: "+ data[1]);
 						System.out.println("Last Name: " + data[2]);
-						System.out.println("Last Name: "+ data[3]);
-						System.out.println("Email Address: "+ data[4]);
-						System.out.println("Position: "+ data[5]);
-						System.out.println("Location: "+ data[6]);
-						System.out.println("Current Employee: "+ data[7]);
+						System.out.println("Email Address: "+ data[3]);
+						System.out.println("Position: "+ data[4]);
+						System.out.println("Location: "+ data[5]);
+						System.out.println("Current Employee: "+ data[6]);
 					}
 				}
 			}
