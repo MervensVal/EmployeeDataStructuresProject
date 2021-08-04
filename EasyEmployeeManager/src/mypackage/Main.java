@@ -9,8 +9,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Welcome to our non DB Employee management program!");
 
+		System.out.println("Welcome to our non DB Employee management program!");
+		chooseUserChoices();
+
+	}
+	
+	public static void displayOptions() 
+	{
 		System.out.println("Choose an option from the list below");
 
 		System.out.println("*******************************************");
@@ -22,30 +28,34 @@ public class Main {
 		System.out.println("(5)	View Employee Information by Last Name (Linear/ Basic File Search Implementation)");
 		System.out.println("(6)	View Employee Information by ID (Hash Table & Linked List Implementation)");
 		System.out.println("********************************************");
-
-		chooseUserChoices();
-
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------------------------------
-	public static boolean chooseUserChoices(/* Employee[] countyArray */) {
+	public static void chooseUserChoices() {
+		boolean continueLoop = true;
+		
 		Main mainObj = new Main();
+		
+		while(continueLoop){
+		displayOptions();
+		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Please make a selection");
 		String userDecision = input.next();
 		System.out.println();
-
+		
 		switch (userDecision) {
 		case "0":
 			System.out.println("Program ended. Thank you");
-			return true;
+			continueLoop = false;
+			break;
 		case "1":
 			mainObj.displayEmployees();
 			System.out.println("All employee information displayed");
 			break;
 		case "2":
 			mainObj.insertData();
-			System.out.println("New employees inserted");
+			System.out.println("New employee inserted");
 			break;
 		case "3":
 			mainObj.update();
@@ -66,14 +76,14 @@ public class Main {
 		default:
 			System.out.println("Incorrect information entered");
 		}
-		return false;
+		}
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------------------------------
 	public void displayEmployees() {
 		System.out.println();
-		System.out.printf("%-25s%-25s%-25s%-25s%-25s%-25s%-25s", "ID ", " First Name  ", " Last Name ",
-				" Email Address ", " Position ", " Location", "Current Employee");
+		System.out.printf("%-25s%-25s%-25s%-25s%-25s%-25s%-25s", "ID ", "First Name  ", "Last Name ",
+				"Email Address ", "Position ", "Location", "Current Employee");
 		System.out.println();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
@@ -199,12 +209,13 @@ public class Main {
 				data = s.split(","); // split text based off of comma
 				if (idToEmployeeToChange == Integer.parseInt(data[0])) // if id matches
 				{
-					String row = data[0] + ",";
+					String row = data[0];
 					for (int i = 0; i < 6; i++) {
 						if (yesNo[i] == 'Y' || yesNo[i] == 'y') {
-							row = row + UpdatedInfo[i] + ",";
+							//row = row + UpdatedInfo[i] + ",";
+							row = row + "," + UpdatedInfo[i];
 						} else {
-							row = row + data[i + 1] + ",";
+							row = row + ","+ data[i + 1];
 						}
 					}
 					sb.append(row);
@@ -369,7 +380,7 @@ public class Main {
 			
 		}
 		else
-			System.out.println("Could not find " + keyToFind);
+			System.out.println("Could not find with Id: " + keyToFind);
 		
 	}
 	// ----------------------------------------------------------------------------------------------------------------------------------------
