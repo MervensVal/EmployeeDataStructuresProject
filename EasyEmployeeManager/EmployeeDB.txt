@@ -1,7 +1,3 @@
-1,a,a,a,a,a,a
-2,x,x,x,x,b,b,
-3,Merv,V,email.com,it,orlando,y,
-4,Jon,Snow,js@email.com,Guard,North Office,n
-5,a,Snow,a,a,a,n
-6,a,a,b,b,b,b
-7,b,a,c,c,c,y
+1,A,A,A,A,A,N
+2,JON,B,B,B,B,N,
+3,C,C,C,C,C,Y
