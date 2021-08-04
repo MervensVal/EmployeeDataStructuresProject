@@ -27,7 +27,7 @@ public class Main {
 
 	}
 
-	// --------------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------------------------------
 	public static boolean chooseUserChoices(/* Employee[] countyArray */) {
 		Main mainObj = new Main();
 		Scanner input = new Scanner(System.in);
@@ -60,7 +60,8 @@ public class Main {
 			System.out.println("Selected employee information displayed");
 			break;
 		case "6":
-			System.out.println("Feature not yet implemented");
+			mainObj.searchByHashTable(7);
+			System.out.println();
 			break;
 		default:
 			System.out.println("Incorrect information entered");
@@ -102,8 +103,8 @@ public class Main {
 
 		// [Scanner with System.in] is used to get user data
 		Scanner sc = new Scanner(System.in);
-//		System.out.println("Enter Employee Id: ");
-//		String epmployeeID = sc.nextLine();
+		// System.out.println("Enter Employee Id: ");
+		// String epmployeeID = sc.nextLine();
 
 		System.out.println("Enter Employee First Name: ");
 		String epmployeeFN = sc.nextLine();
@@ -224,107 +225,156 @@ public class Main {
 		}
 
 	}
-	
-	//-------------------------------------------------------------------------------------
-	/*This method will be used to find the amount of employees in a file*/
-	public int amountEmployeesStored() 
-	{
+
+	// ----------------------------------------------------------------------------------------------------------------------------------------
+	/* This method will be used to find the amount of employees in a file */
+	public int amountEmployeesStored() {
 		int amountEmployees = 1;
 		try {
-		BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
-		String s = "";
-		while (br.readLine() != null) // read line of text
-		{
-			amountEmployees++;
-		}
-	}catch(Exception e)
-		{
-		
+			BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
+			String s = "";
+			while (br.readLine() != null) // read line of text
+			{
+				amountEmployees++;
+			}
+		} catch (Exception e) {
+
 		}
 		return amountEmployees;
 	}
-	
-	//-------------------------------------------------------------------------------------
-	/*This method will be used to find a specific Employee based on id*/
-	public void findEmployeeLinearSearchID() 
-	{
+
+	// ----------------------------------------------------------------------------------------------------------------------------------------
+	/* This method will be used to find a specific Employee based on id */
+	public void findEmployeeLinearSearchID() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the Employee Id: "); 
+		System.out.println("Enter the Employee Id: ");
 		int idToSearch = input.nextInt();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
 			String s = "";
-			while((s = br.readLine()) != null) 
-			{
-				String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of code
+			while ((s = br.readLine()) != null) {
+				String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of
+				// code
 				data = s.split(","); // split text based on comma
-				if(idToSearch == Integer.parseInt(data[0])) {
+				if (idToSearch == Integer.parseInt(data[0])) {
 					System.out.println("ID: " + data[0]);
-					System.out.println("First Name: "+ data[1]);
+					System.out.println("First Name: " + data[1]);
 					System.out.println("Last Name: " + data[2]);
-					System.out.println("Email Address: "+ data[3]);
-					System.out.println("Position: "+ data[4]);
-					System.out.println("Location: "+ data[5]);
-					System.out.println("Current Employee: "+ data[6]);
+					System.out.println("Email Address: " + data[3]);
+					System.out.println("Position: " + data[4]);
+					System.out.println("Location: " + data[5]);
+					System.out.println("Current Employee: " + data[6]);
 				}
 			}
-		}
-		catch(Exception e) 
-		{
-			
+		} catch (Exception e) {
+
 		}
 	}
-	
-	//-------------------------------------------------------------------------------------
-		/*This method will be used to find a specific Employee based on id*/
-		public void findEmployeeLinearSearchLastN() 
-		{
-			Scanner input = new Scanner(System.in);
-			System.out.println("Enter the Employee Last Name: "); 
-			String LastNToSearch = input.nextLine();
-			try {
-				BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
-				String s = "";
-				while((s = br.readLine()) != null) 
-				{
-					String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of code
-					data = s.split(","); // split text based on comma
-					if(LastNToSearch.equals(data[2])) {
-						System.out.println("-----------------------------");
-						System.out.println("ID: " + data[0]);
-						System.out.println("First Name: "+ data[1]);
-						System.out.println("Last Name: " + data[2]);
-						System.out.println("Email Address: "+ data[3]);
-						System.out.println("Position: "+ data[4]);
-						System.out.println("Location: "+ data[5]);
-						System.out.println("Current Employee: "+ data[6]);
-					}
+
+	// ----------------------------------------------------------------------------------------------------------------------------------------
+	/* This method will be used to find a specific Employee based on id */
+	public void findEmployeeLinearSearchLastN() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the Employee Last Name: ");
+		String LastNToSearch = input.nextLine();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(employeeDbFile));
+			String s = "";
+			while ((s = br.readLine()) != null) {
+				String data[] = new String[7]; // create array with capacity of 6 string items to hold entire line of
+				// code
+				data = s.split(","); // split text based on comma
+				if (LastNToSearch.equals(data[2])) {
+					System.out.println("-----------------------------");
+					System.out.println("ID: " + data[0]);
+					System.out.println("First Name: " + data[1]);
+					System.out.println("Last Name: " + data[2]);
+					System.out.println("Email Address: " + data[3]);
+					System.out.println("Position: " + data[4]);
+					System.out.println("Location: " + data[5]);
+					System.out.println("Current Employee: " + data[6]);
 				}
 			}
-			catch(Exception e) 
-			{
+		} catch (Exception e) {
+
+		}
+	}
+
+	// ----------------------------------------------------------------------------------------------------------------------------------------
+	public void searchByHashTable(int arraySize) {
+		
+		//create variables to store Employee properties
+		String epmployeeID = null;
+		String epmployeeFN = null;
+		String epmployeeLN = null;
+		String employeeEmail = null;
+		String epmployeePosition = null;
+		String epmployeeLocation = null;
+		String employementStatus = null;
+
+		//create an employee array with a max of 7
+		Employee[] employeeArray = new Employee[9];
+		Link aDataItem;
+		int sizeOfTable = 5;
+		
+		//create a hashtable object
+		HashTable hTable = new HashTable(sizeOfTable);
+		
+		File fileObj = new File(employeeDbFile);
+
+		try {
+			Scanner input = new Scanner(fileObj);
+			input.useDelimiter(",|\n");
+			System.out.println();
+
+			for (int i = 0; input.hasNext(); i++) {
+				epmployeeID = input.next();
+				epmployeeFN = input.next();
+				epmployeeLN = input.next();
+				employeeEmail = input.next();
+				epmployeePosition = input.next();
+				epmployeeLocation = input.next();
+				employementStatus = input.next();
 				
+				employeeArray[i] = new Employee(epmployeeID, epmployeeFN, epmployeeLN, employeeEmail, epmployeePosition, epmployeeLocation,employementStatus); 
+				/*
+				 * aDataItem = new Link(aKey);
+					theHashTable.insert(aDataItem);
+				 */
+				//System.out.println("Employee Id:  " + employeeArray[i].getEpmployeeFN() + " | Employee Last Name:  " + employeeArray[i].getEpmployeeLN());
+				
+				aDataItem = new Link(employeeArray[i]);
+				hTable.insert(aDataItem);
 			}
+		} catch (Exception e) {
+
 		}
 		
+		Scanner input1 = new Scanner(System.in);
+		System.out.println("Enter Employee Id: ");
+		int keyToFind = input1.nextInt();
+		
+		aDataItem = hTable.find(keyToFind);
+		
+		if(aDataItem != null) 
+		{
+			System.out.println("-----------------------------");
+			System.out.println("ID: " + aDataItem.getKey().getEpmployeeID());
+			System.out.println("First Name: " + aDataItem.getKey().getEpmployeeFN());
+			System.out.println("Last Name: "+ aDataItem.getKey().getEpmployeeLN());
+			System.out.println("Email Address: "+ aDataItem.getKey().getEmployeeEmail());
+			System.out.println("Position: "+ aDataItem.getKey().getEpmployeePosition());
+			System.out.println("Location: "+ aDataItem.getKey().getEpmployeeLocation());
+			System.out.println("Current Employee: "+ aDataItem.getKey().getEmployementStatus());
+			
+		}
+		else
+			System.out.println("Could not find " + keyToFind);
+		
+	}
+	// ----------------------------------------------------------------------------------------------------------------------------------------
 	
+	/*
+	 * mainObj.searchByHashTable(7);
+	 */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
